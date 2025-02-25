@@ -5,7 +5,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-// 스택 수열
+// 백준 1874번. 스택 수열
+// 첫 시도 : String 변수에 하나씩 문자열을 더해간 후 출력. => 매번 새로운 String을 만드는 꼴이라 메모리 초과
+// 두 번째 시도 : StringBuilder를 사용해 쌓은 후 한번에 출력 => 해결
 
 public class Main {
 
