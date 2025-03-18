@@ -1,4 +1,5 @@
 // 백준 1094번. 막대기
+// 2의 거듭제곱들의 합으로 X를 표현하는 것과 같다!
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -9,28 +10,6 @@ public class Main {
 
 		int X = sc.nextInt();
 
-		int sum = 64;
-		int min = 64;
-		int num = 1;
-
-		while (true) {
-			if (sum == X) {
-				System.out.println(num);
-				break;
-			}
-
-			if (sum < X)
-				break;
-
-			int now = min;
-			if (sum - now + (now / 2) >= X) {
-				sum -= min / 2;
-				min /= 2;
-			} else {
-				min /= 2;
-				num++;
-			}
-		}
-
+		System.out.println(Integer.bitCount(X));
 	}
 }
