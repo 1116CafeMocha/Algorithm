@@ -1,9 +1,6 @@
 // 백준 1094번. 막대기
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -12,33 +9,27 @@ public class Main {
 
 		int X = sc.nextInt();
 
-		List<Integer> list = new ArrayList<>();
-		list.add(64);
+		int sum = 64;
+		int min = 64;
+		int num = 1;
 
-		while (!list.isEmpty()) {
-			int sum = 0;
-			for (int i = 0; i < list.size(); i++) {
-				sum += list.get(i);
-			}
-
+		while (true) {
 			if (sum == X) {
-				System.out.println(list.size());
+				System.out.println(num);
 				break;
 			}
 
 			if (sum < X)
 				break;
 
-			int now = list.get(0);
-			list.remove(0);
+			int now = min;
 			if (sum - now + (now / 2) >= X) {
-				list.add(now / 2);
+				sum -= min / 2;
+				min /= 2;
 			} else {
-				list.add(now / 2);
-				list.add(now / 2);
+				min /= 2;
+				num++;
 			}
-
-			Collections.sort(list);
 		}
 
 	}
