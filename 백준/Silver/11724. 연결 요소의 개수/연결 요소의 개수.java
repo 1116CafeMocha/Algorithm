@@ -43,6 +43,7 @@ public class Main {
 			
 			count++;
 			que.offer(i);
+			visited[i] = true;
 			while(!que.isEmpty()) {
 				int now = que.poll();
 				
