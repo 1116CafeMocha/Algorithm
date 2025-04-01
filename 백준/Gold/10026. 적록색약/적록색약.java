@@ -4,6 +4,9 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 
 // 백준 10026번. 적록색약
+// 개선사항 :
+// String[] input -> String 으로 받아서 charAt으로 파싱
+// dfs 돌리기 전에도 visited = true 처리
 
 public class Main {
 	static int N;
@@ -15,7 +18,7 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String[] input;
+		String input;
 
 		N = Integer.parseInt(br.readLine());
 		mapNormal = new int[N][N];
@@ -23,13 +26,13 @@ public class Main {
 		visited = new boolean[N][N];
 
 		for (int r = 0; r < N; r++) {
-			input = br.readLine().split("");
+			input = br.readLine();
 
 			for (int c = 0; c < N; c++) {
-				String now = input[c];
-				if (now.equals("G")) {
+				char now = input.charAt(c);
+				if (now == 'G') {
 					mapNormal[r][c] = 1;
-				} else if (now.equals("B")) {
+				} else if (now == 'B') {
 					mapNormal[r][c] = 2;
 					mapWeakness[r][c] = 1;
 				}
@@ -41,6 +44,7 @@ public class Main {
 		for(int r=0; r<N; r++) {
 			for(int c=0; c<N; c++) {
 				if(visited[r][c]) continue;
+				visited[r][c] = true;
 				count++;
 				dfs(mapNormal, r, c);
 			}
@@ -57,6 +61,7 @@ public class Main {
 		for(int r=0; r<N; r++) {
 			for(int c=0; c<N; c++) {
 				if(visited[r][c]) continue;
+				visited[r][c] = true;
 				count++;
 				dfs(mapWeakness, r, c);
 			}
