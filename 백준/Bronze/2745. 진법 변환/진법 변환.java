@@ -15,23 +15,7 @@ public class Main {
 		String N = input[0];
 		int B = Integer.parseInt(input[1]);
 		
-		long result = 0;
-		long temp = 1;
-		
-		for(int i=N.length()-1; i>=0; i--) {
-			char now = N.charAt(i);
-			int value;
-			if((int)now >= 65 && (int)now <= 90) {
-				value = (int)now - 55;
-			}else {
-				value = Character.getNumericValue(now);
-			}
-			
-			result += value * temp;
-			temp *= B;
-		}
-		
-		bw.write(Long.toString(result));
+		bw.write(Long.toString(Long.parseLong(N, B)));
 
 		bw.flush();
 		bw.close();
