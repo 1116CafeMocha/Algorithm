@@ -21,7 +21,7 @@ public class Main {
 			if (N == -1)
 				break;
 
-			for (int i = 1; i < N; i++) {
+			for (int i = 1; i <= N / 2; i++) {
 				if (N % i == 0) {
 					list.add(i);
 					sum += i;
