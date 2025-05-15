@@ -12,22 +12,16 @@ public class Main {
 
 		int N = Integer.parseInt(br.readLine());
 
-		int now = N;
-
-		while (true) {
-			for (int i = 2; i <= N; i++) {
-				if (now % i == 0) {
-					bw.write(Integer.toString(i));
-					bw.newLine();
-					now /= i;
-					break;
-				}
+		for (int i = 2; i * i <= N; i++) {
+			while (N % i == 0) {
+				bw.write(Integer.toString(i));
+				bw.newLine();
+				N /= i;
 			}
+		}
 
-			if (now == N)
-				break;
-
-			N = now;
+		if (N > 1) {
+			bw.write(Integer.toString(N));
 		}
 
 		bw.flush();
