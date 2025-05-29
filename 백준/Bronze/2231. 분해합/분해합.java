@@ -13,11 +13,11 @@ public class Main {
 		int N = Integer.parseInt(br.readLine());
 		int min = Integer.MAX_VALUE;
 
-		for (int i = 0; i < N; i++) {
-			String[] arr = Integer.toString(i).split("");
+		for (int i = N - 9 * Integer.toString(N).length(); i < N; i++) {
+			char[] arr = Integer.toString(i).toCharArray();
 			int sum = i;
-			for (String now : arr) {
-				sum += Integer.parseInt(now);
+			for (char now : arr) {
+				sum += now - '0';
 				if (sum > N)
 					break;
 			}
