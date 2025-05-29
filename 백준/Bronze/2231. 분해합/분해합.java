@@ -14,12 +14,11 @@ public class Main {
 		int min = Integer.MAX_VALUE;
 
 		for (int i = N - 9 * Integer.toString(N).length(); i < N; i++) {
-			char[] arr = Integer.toString(i).toCharArray();
 			int sum = i;
-			for (char now : arr) {
-				sum += now - '0';
-				if (sum > N)
-					break;
+			int tmp = i;
+			while (tmp > 0) {
+				sum += tmp % 10;
+				tmp /= 10;
 			}
 
 			if (sum == N)
