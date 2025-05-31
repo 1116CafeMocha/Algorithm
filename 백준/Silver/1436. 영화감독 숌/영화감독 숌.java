@@ -15,19 +15,16 @@ public class Main {
 		int num = 666;
 		int count = 0;
 
-		loop: while (count < N) {
-			char[] str = Integer.toString(num).toCharArray();
+		while (count < N) {
+			String str = Integer.toString(num);
+			if (str.contains("666")) {
+				count++;
 
-			for (int i = 0; i < str.length - 2; i++) {
-				if (str[i] == '6' && str[i + 1] == '6' && str[i + 2] == '6') {
-					count++;
-
-					if (count == N) {
-						break loop;
-					}
+				if (count == N)
 					break;
-				}
+
 			}
+
 			num++;
 		}
 
