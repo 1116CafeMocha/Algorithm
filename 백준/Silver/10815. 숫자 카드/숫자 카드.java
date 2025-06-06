@@ -3,8 +3,8 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class Main {
 
@@ -16,7 +16,7 @@ public class Main {
 
 		String[] input = br.readLine().split(" ");
 
-		Set<Integer> set = new TreeSet<>();
+		Set<Integer> set = new HashSet<>();
 
 		for (int i = 0; i < N; i++) {
 			set.add(Integer.parseInt(input[i]));
