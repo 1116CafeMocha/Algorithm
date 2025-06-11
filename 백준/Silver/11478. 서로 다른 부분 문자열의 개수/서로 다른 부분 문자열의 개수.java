@@ -7,8 +7,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Main {
-	static char[] arr;
-	static Set<String> set;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -16,28 +14,17 @@ public class Main {
 
 		String input = br.readLine();
 
-		arr = input.toCharArray();
+		Set<String> set = new HashSet<>();
 
-		set = new HashSet<>();
-
-		for (int i = 0; i < arr.length; i++) {
-			make(i);
+		for (int i = 0; i < input.length(); i++) {
+			for (int j = i + 1; j <= input.length(); j++) {
+				set.add(input.substring(i, j));
+			}
 		}
 
 		bw.write(Integer.toString(set.size()));
 
 		bw.flush();
 		bw.close();
-	}
-
-	static void make(int idx) {
-		if (idx > arr.length)
-			return;
-
-		String now = Character.toString(arr[idx]);
-		for (int i = idx; i < arr.length; i++) {
-			now += Character.toString(arr[i]);
-			set.add(now);
-		}
 	}
 }
