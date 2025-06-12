@@ -1,4 +1,5 @@
 // 유클리드 호제법 사용
+// B가 A보다 큰 경우에도 잘 작동함
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -20,12 +21,6 @@ public class Main {
 			input = br.readLine().split(" ");
 			int A = Integer.parseInt(input[0]);
 			int B = Integer.parseInt(input[1]);
-
-			if (B > A) {
-				int temp = A;
-				A = B;
-				B = temp;
-			}
 
 			int result = A * B;
 
