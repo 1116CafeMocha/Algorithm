@@ -1,10 +1,10 @@
+// 유클리드 호제법 사용
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
@@ -21,32 +21,21 @@ public class Main {
 			int A = Integer.parseInt(input[0]);
 			int B = Integer.parseInt(input[1]);
 
-			List<Integer> list = new ArrayList<>();
-
-			while (true) {
-				boolean flag = false;
-				for (int i = 2; i <= Math.min(A, B); i++) {
-					if (A % i == 0 && B % i == 0) {
-						list.add(i);
-						A /= i;
-						B /= i;
-						flag = true;
-						break;
-					}
-				}
-
-				if (!flag || A <= 1 || B <= 1) {
-					break;
-				}
+			if (B > A) {
+				int temp = A;
+				A = B;
+				B = temp;
 			}
 
-			int result = 1;
+			int result = A * B;
 
-			for (int i = 0; i < list.size(); i++) {
-				result *= list.get(i);
+			while (B != 0) {
+				int temp = A % B;
+				A = B;
+				B = temp;
 			}
-			result *= A * B;
 
+			result /= A;
 			bw.write(Integer.toString(result));
 			bw.newLine();
 		}
