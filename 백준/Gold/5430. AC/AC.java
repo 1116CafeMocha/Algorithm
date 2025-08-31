@@ -12,10 +12,7 @@ public class Main {
 	public static boolean isError;
 
 	public static void R() {
-		if (direction)
-			direction = false;
-		else
-			direction = true;
+		direction = !direction;
 		return;
 	}
 
