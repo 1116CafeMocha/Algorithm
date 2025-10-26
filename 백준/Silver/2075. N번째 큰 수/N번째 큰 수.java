@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.PriorityQueue;
+import java.util.StringTokenizer;
 
 public class Main {
 
@@ -18,9 +19,10 @@ public class Main {
 		PriorityQueue<Integer> pq = new PriorityQueue<>();
 
 		for (int i = 0; i < N; i++) {
-			input = br.readLine().split(" ");
+			StringTokenizer st = new StringTokenizer(br.readLine());
 			for (int j = 0; j < N; j++) {
-				pq.offer(Integer.parseInt(input[j]));
+				int x = Integer.parseInt(st.nextToken());
+				pq.offer(x);
 
 				if (pq.size() > N) {
 					pq.poll();
