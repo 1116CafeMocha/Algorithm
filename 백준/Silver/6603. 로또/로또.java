@@ -8,7 +8,6 @@ public class Main {
 	static BufferedWriter bw;
 	static int K;
 	static int[] arr;
-	static boolean[] used;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -24,7 +23,6 @@ public class Main {
 			}
 
 			arr = new int[K];
-			used = new boolean[K];
 
 			for (int i = 0; i < K; i++) {
 				arr[i] = Integer.parseInt(input[i + 1]);
@@ -49,16 +47,8 @@ public class Main {
 		}
 
 		for (int i = start; i < K; i++) {
-			if (used[i])
-				continue;
-
-			if (idx != 0 && answer[idx - 1] > arr[i])
-				continue;
-
 			answer[idx] = arr[i];
-			used[i] = true;
-			comb(start + 1, idx + 1, answer);
-			used[i] = false;
+			comb(i + 1, idx + 1, answer);
 		}
 	}
 
