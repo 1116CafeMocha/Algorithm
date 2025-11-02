@@ -13,24 +13,26 @@ public class Main {
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
 		int N = Integer.parseInt(br.readLine());
-		
+
 		List<Integer> list = new ArrayList<>();
-		
-		for(int i=1; i<=N; i++) {
+
+		for (int i = 1; i <= N; i++) {
 			list.add(i);
 		}
-		
+
 		long T = 1;
 		int idx = 0;
-		
-		while(list.size() > 1) {
-			long temp = (T*T*T-1) % list.size();
-			idx = (int)(temp + idx) % list.size();
+		int size = list.size();
+
+		while (list.size() > 1) {
+			long temp = (T * T * T - 1) % size;
+			idx = (int) (temp + idx) % size;
 			list.remove(idx);
-			
+
 			T++;
+			size--;
 		}
-		
+
 		bw.write(Integer.toString(list.get(0)));
 
 		bw.flush();
