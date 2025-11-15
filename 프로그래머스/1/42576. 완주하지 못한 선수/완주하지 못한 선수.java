@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 class Solution {
-    public String solution(String[] participant, String[] completion) throws IOException {
+    public String solution(String[] participant, String[] completion) {
         String answer = "";
         
         Map<String, Integer> map = new HashMap<>();
