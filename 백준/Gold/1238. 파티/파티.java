@@ -10,8 +10,6 @@ import java.util.PriorityQueue;
 
 public class Main {
 	static int N, M, X;
-	static List<Edge>[] graph;
-
 	static int INF = 1_000_000_000;
 
 	static class Edge {
@@ -33,10 +31,12 @@ public class Main {
 		M = Integer.parseInt(input[1]);
 		X = Integer.parseInt(input[2]);
 
-		graph = new ArrayList[N + 1];
+		List<Edge>[] graph = new ArrayList[N + 1];
+		List<Edge>[] reverseGraph = new ArrayList[N + 1];
 
 		for (int i = 1; i <= N; i++) {
 			graph[i] = new ArrayList<>();
+			reverseGraph[i] = new ArrayList<>();
 		}
 
 		for (int i = 0; i < M; i++) {
@@ -46,15 +46,16 @@ public class Main {
 			int T = Integer.parseInt(input[2]);
 
 			graph[A].add(new Edge(B, T));
+			reverseGraph[B].add(new Edge(A, T));
 		}
 
 		int answer = 0;
 
-		int[] distFromX = dijkstra(X);
+		int[] distToX = dijkstra(X, reverseGraph);
+		int[] distFromX = dijkstra(X, graph);
 
 		for (int i = 1; i <= N; i++) {
-			int[] dist = dijkstra(i);
-			int sum = dist[X] + distFromX[i];
+			int sum = distToX[i] + distFromX[i];
 			answer = Math.max(answer, sum);
 		}
 
@@ -64,7 +65,7 @@ public class Main {
 		bw.close();
 	}
 
-	static int[] dijkstra(int start) {
+	static int[] dijkstra(int start, List<Edge>[] graph) {
 		int[] dist = new int[N + 1];
 		Arrays.fill(dist, INF);
 		dist[start] = 0;
