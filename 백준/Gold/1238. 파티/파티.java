@@ -10,16 +10,16 @@ import java.util.PriorityQueue;
 
 public class Main {
 	static int N, M, X;
-	static List<Node>[] graph;
+	static List<Edge>[] graph;
 	static int[] dist;
 	
 	static int INF = 1_000_000_000;
 	
-	static class Node {
+	static class Edge {
 		int to;
 		int weight;
 		
-		Node(int to, int weight){
+		Edge(int to, int weight){
 			this.to = to;
 			this.weight = weight;
 		}
@@ -47,7 +47,7 @@ public class Main {
 			int B = Integer.parseInt(input[1]);
 			int T = Integer.parseInt(input[2]);
 			
-			graph[A].add(new Node(B, T));
+			graph[A].add(new Edge(B, T));
 		}
 		
 		int answer = 0;
@@ -67,22 +67,22 @@ public class Main {
 		Arrays.fill(dist, INF);
 		dist[start] = 0;
 		
-		PriorityQueue<Node> pq = new PriorityQueue<>((a, b) -> a.weight - b.weight);
-		pq.offer(new Node(start, 0));
+		PriorityQueue<Edge> pq = new PriorityQueue<>((a, b) -> a.weight - b.weight);
+		pq.offer(new Edge(start, 0));
 		
 		while(!pq.isEmpty()) {
-			Node now = pq.poll();
+			Edge now = pq.poll();
 			int nowTo = now.to;
 			int nowDist = now.weight;
 			
 			if(nowDist > dist[nowTo]) continue;
 			
-			for(Node next : graph[nowTo]) {
+			for(Edge next : graph[nowTo]) {
 				int nextDist = nowDist + next.weight;
 				
 				if(nextDist < dist[next.to]) {
 					dist[next.to] = nextDist;
-					pq.offer(new Node(next.to, nextDist));
+					pq.offer(new Edge(next.to, nextDist));
 				}
 			}
 		}
