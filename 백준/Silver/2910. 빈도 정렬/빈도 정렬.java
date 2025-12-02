@@ -4,23 +4,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
-	static class Message {
-		int num;
-		int idx;
-		int count;
-
-		Message(int num, int idx, int count) {
-			this.num = num;
-			this.idx = idx;
-			this.count = count;
-		}
-	}
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -31,32 +21,28 @@ public class Main {
 		int N = Integer.parseInt(st.nextToken());
 		int C = Integer.parseInt(st.nextToken());
 
-		List<Message> list = new ArrayList<>();
-		Map<Integer, Integer> map = new HashMap<>();
-
-		int index = 0;
-
 		st = new StringTokenizer(br.readLine());
+
+		LinkedHashMap<Integer, Integer> frq = new LinkedHashMap<>();
+
 		for (int i = 0; i < N; i++) {
-			int now = Integer.parseInt(st.nextToken());
-			if (map.containsKey(now)) {
-				list.get(map.get(now)).count++;
-			} else {
-				map.put(now, index);
-				list.add(new Message(now, index, 1));
-				index++;
-			}
+			int x = Integer.parseInt(st.nextToken());
+
+			frq.put(x, frq.getOrDefault(x, 0) + 1);
 		}
 
-		list.sort((a, b) -> {
-			if (a.count != b.count)
-				return b.count - a.count;
-			return a.idx - b.idx;
+		// 엔트리 리스트로 변환
+		List<Map.Entry<Integer, Integer>> list = new ArrayList<>(frq.entrySet());
+
+		Collections.sort(list, (a, b) -> {
+			return b.getValue() - a.getValue();
 		});
 
-		for (Message cur : list) {
-			for (int i = 0; i < cur.count; i++) {
-				bw.write(cur.num + " ");
+		for (Map.Entry<Integer, Integer> e : list) {
+			int num = e.getKey();
+			int count = e.getValue();
+			for (int i = 0; i < count; i++) {
+				bw.write(num + " ");
 			}
 		}
 
