@@ -17,15 +17,11 @@ public class Main {
 		int L = Integer.parseInt(st.nextToken());
 
 		LinkedHashSet<String> set = new LinkedHashSet<>();
-		
+
 		for (int i = 0; i < L; i++) {
 			String now = br.readLine();
-			if (set.contains(now)) {
-				set.remove(now);
-				set.add(now);
-			} else {
-				set.add(now);
-			}
+			set.remove(now);
+			set.add(now);
 		}
 
 		int idx = 0;
