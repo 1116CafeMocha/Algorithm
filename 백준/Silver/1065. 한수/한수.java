@@ -3,8 +3,6 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
@@ -29,18 +27,21 @@ public class Main {
 	static boolean check(int num) {
 		if(num < 100) return true;
 		
-		List<Integer> list = new ArrayList<>();
+		int digit0 = num%10;
+		num /= 10;
+		
+		int digit1 = num%10;
+		num /= 10;
+		
+		int val = digit0 - digit1;
+		int pre = digit1;
 		
 		while(num > 0) {
 			int digit = num % 10;
-			list.add(digit);
+			
+			if(pre - digit != val) return false;
+			
 			num /= 10;
-		}
-		
-		int val = list.get(1) - list.get(0);
-		
-		for(int i=2; i<list.size(); i++) {
-			if(list.get(i) - list.get(i-1) != val) return false;
 		}
 		
 		return true;
