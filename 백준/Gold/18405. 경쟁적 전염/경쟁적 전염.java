@@ -10,7 +10,6 @@ import java.util.StringTokenizer;
 public class Main {
 	static int N, K;
 	static int[][] map;
-	static boolean[][] visited;
 	static Queue<int[]>[] que;
 	static int[] dr = {0, 1, 0, -1};
 	static int[] dc = {1, 0, -1, 0};
@@ -24,7 +23,6 @@ public class Main {
 		N = Integer.parseInt(st.nextToken());
 		K = Integer.parseInt(st.nextToken());
 		map = new int[N+1][N+1];
-		visited = new boolean[N+1][N+1];
 		que = new ArrayDeque[K+1];
 		
 		for(int i=1; i<=K; i++) {
@@ -39,7 +37,6 @@ public class Main {
 				
 				if(now != 0) {
 					que[now].offer(new int[] {r, c});
-					visited[r][c] = true;
 				}
 			}
 		}
@@ -69,10 +66,8 @@ public class Main {
 						if(nextR > N) continue;
 						if(nextC > N) continue;
 						
-						if(visited[nextR][nextC]) continue;
 						if(map[nextR][nextC] != 0) continue;
 						
-						visited[nextR][nextC] = true;
 						map[nextR][nextC] = i;
 						que[i].offer(new int[] {nextR, nextC});
 					}
