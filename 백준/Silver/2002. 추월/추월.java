@@ -3,10 +3,10 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayDeque;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Queue;
+
+// 권장 풀이
 
 public class Main {
 	
@@ -15,34 +15,29 @@ public class Main {
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
 		int N = Integer.parseInt(br.readLine());
-		Queue<String> que = new ArrayDeque<>();
-		Map<String, Boolean> map = new HashMap<>();
+		Map<String, Integer> idx = new HashMap<>(N*2);
+		String[] in = new String[N];
+		boolean[] out = new boolean[N];
 		
 		for(int i=0; i<N; i++) {
-			String now = br.readLine().strip();
-			que.offer(now);
-			map.put(now, false);
+			String input = br.readLine().strip();
+			in[i] = input;
+			idx.put(input, i);
 		}
 		
-		String now = que.poll();
-		map.put(now, true);
+		int peekIdx = 0;
 		int count = 0;
 		
 		for(int i=0; i<N; i++) {
 			String input = br.readLine().strip();
+			int j = idx.get(input);
+			out[j] = true;
 			
-			if(input.equals(now)) {
-				map.put(now, true);
-				while(!que.isEmpty() && map.get(now)) {
-					now = que.poll();
-				}
-				continue;
+			if(j != peekIdx) {
+				count++;
+			} else {
+				while(peekIdx < N && out[peekIdx]) peekIdx++;
 			}
-			
-			if(map.get(input)) continue;
-			
-			map.put(input, true);
-			count++;
 		}
 		
 		bw.write(Integer.toString(count));
