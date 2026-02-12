@@ -54,7 +54,7 @@ public class Main {
 
         double percent = elapsedMinutes * 100.0 / totalMinutes;
 
-        System.out.printf("%.10f%n", percent);
+        bw.write(String.format("%.10f%n", percent));
 		
 		bw.flush();
 		bw.close();
