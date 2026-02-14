@@ -1,35 +1,26 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.io.OutputStreamWriter;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		StringBuilder out = new StringBuilder();
-
-        int T = Integer.parseInt(br.readLine().trim());
-
-        for (int tc = 1; tc <= T; tc++) {
-            String line = br.readLine();
-            StringTokenizer st = new StringTokenizer(line);
-
-            int n = st.countTokens();
-            String[] words = new String[n];
-            for (int i = 0; i < n; i++) {
-                words[i] = st.nextToken();
-            }
-
-            out.append("Case #").append(tc).append(": ");
-            for (int i = n - 1; i >= 0; i--) {
-                out.append(words[i]);
-                if (i != 0) out.append(' ');
-            }
-            out.append('\n');
-        }
-
-        System.out.print(out);
+		int N = Integer.parseInt(br.readLine());
+		for(int i=1; i<=N; i++) {
+			String[] input = br.readLine().split(" ");
+			int len = input.length;
+			bw.write("Case #"+i+": ");
+			for(int j=len-1; j>=0; j--)
+				bw.write(input[j] + " ");
+			bw.newLine();
+		}
+		
+		bw.flush();
+		bw.close();
 	}
 
 }
