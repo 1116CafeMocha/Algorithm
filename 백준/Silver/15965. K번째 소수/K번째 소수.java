@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 public class Main {
+	static final int N = 10_000_000;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -12,7 +13,7 @@ public class Main {
 		
 		int K = Integer.parseInt(br.readLine());
 		
-		boolean[] prime = new boolean[K*10];
+		boolean[] prime = new boolean[N+1];
 		
 		prime[0] = true;
 		prime[1] = true;
@@ -23,13 +24,13 @@ public class Main {
 			return;
 		}
 		
-		for(int i=3; i <= (int)Math.sqrt(K*10); i+=2) {
+		for(int i=3; i <= (int)Math.sqrt(N); i+=2) {
 			if(prime[i]) continue;
-			for(int j=i*i; j<=K*10; j+=i*2) prime[j] = true;
+			for(int j=i*i; j<=N; j+=i*2) prime[j] = true;
 		}
 		
 		int count = 1;
-		for(int i=3; i<= K*10; i+=2) {
+		for(int i=3; i<= N; i+=2) {
 			if(prime[i]) continue;
 			
 			count++;
