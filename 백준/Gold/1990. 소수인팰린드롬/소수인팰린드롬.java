@@ -5,47 +5,76 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.StringTokenizer;
 
+// 첫 풀이 : 소수 먼저 만들고, 주어진 범위 내로 하나씩 팰린드롬인지 확인.
+// => 일단 합격은 했지만 메모리, 성능 면에서 문제가 있음... (메모리 : 393740KB, 시간 : 1536ms)
+// => 개선하자!
+// 1. 짝수 자릿수 팰린드롬은 11을 제외하면 모두 11의 배수이므로 소수가 될 수 없음.
+// 2. 팰린드롬의 개수가 적다는 것을 이용하는 문제임!!
+// 3. max만큼 다 만들 필요 없음.
+
 public class Main {
-	static final int max = 100_000_000;
-	
+
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		
-		boolean[] arr = new boolean[max+1];
-		arr[0] = true;
-		arr[1] = true;
-		
-		for(int i=4; i<=max; i+=2) arr[i] = true;
-		
-		for(int i=3; i*i<=max; i+=2) {
-			if(arr[i]) continue;
-			for(int j=i*i; j<=max; j+=i*2) arr[j] = true;
-		}
-		
+
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		int A = Integer.parseInt(st.nextToken());
 		int B = Integer.parseInt(st.nextToken());
-		
-		for(int i=A; i<=B; i++) {
-			if(arr[i]) continue;
-			if(!check(i)) continue;
-			bw.write(i + "\n");
+
+		int[] base = { 2, 3, 5, 7, 11 };
+		for (int num : base) {
+			if (A <= num && num <= B) {
+				bw.write(num + "\n");
+			}
 		}
-		
+
+		// 3자리 이상 홀수 자릿수 팰린드롬 생성
+		for (int i = 10;; i++) {
+			int palindrome = makePalindrome(i);
+
+			if (palindrome > B)
+				break;
+			if (palindrome < A)
+				continue;
+
+			if (isPrime(palindrome)) {
+				bw.write(palindrome + "\n");
+			}
+		}
+
 		bw.write("-1");
-		
+
 		bw.flush();
 		bw.close();
 	}
-	
-	static boolean check(int N) {
-		char[] str = Integer.toString(N).toCharArray();
-		for(int i=0; i<str.length/2; i++) {
-			int j = str.length - 1 - i;
-			
-			if(str[i] != str[j]) return false;
+
+	static int makePalindrome(int n) {
+		int result = n;
+		n /= 10;
+
+		while (n > 0) {
+			result = result * 10 + (n % 10);
+			n /= 10;
 		}
+
+		return result;
+	}
+
+	static boolean isPrime(int n) {
+		if (n < 2)
+			return false;
+		if (n == 2)
+			return true;
+		if (n % 2 == 0)
+			return false;
+
+		for (int i = 3; i * i <= n; i += 2) {
+			if (n % i == 0)
+				return false;
+		}
+
 		return true;
 	}
+
 }
