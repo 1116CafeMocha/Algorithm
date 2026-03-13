@@ -6,6 +6,9 @@ import java.io.OutputStreamWriter;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
+// 같은 크기가 몇 개 있는지 카운팅
+// 카운팅 값의 최대를 구하면 답!
+
 public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
