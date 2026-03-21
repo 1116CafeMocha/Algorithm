@@ -3,71 +3,72 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.StringTokenizer;
-import java.util.TreeSet;
+
+// 권장 풀이 코드
 
 public class Main {
+
+	static String[] words = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+
+	static class NumberWord implements Comparable<NumberWord> {
+		int number;
+		String word;
+
+		public NumberWord(int number, String word) {
+			this.number = number;
+			this.word = word;
+		}
+
+		@Override
+		public int compareTo(NumberWord o) {
+			return this.word.compareTo(o.word);
+		}
+	}
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		
-		Map<Integer, String> map1 = new HashMap<>();
-		map1.put(0, "zero");
-		map1.put(1, "one");
-		map1.put(2, "two");
-		map1.put(3, "three");
-		map1.put(4, "four");
-		map1.put(5, "five");
-		map1.put(6, "six");
-		map1.put(7, "seven");
-		map1.put(8, "eight");
-		map1.put(9, "nine");
-		
-		Map<String, Integer> map2 = new HashMap<>();
-		map2.put("zero", 0);
-		map2.put("one", 1);
-		map2.put("two", 2);
-		map2.put("three", 3);
-		map2.put("four", 4);
-		map2.put("five", 5);
-		map2.put("six", 6);
-		map2.put("seven", 7);
-		map2.put("eight", 8);
-		map2.put("nine", 9);
-		
+
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		
-		TreeSet<String> set = new TreeSet<>();
-		
+
 		int M = Integer.parseInt(st.nextToken());
 		int N = Integer.parseInt(st.nextToken());
-		
-		for(int i=M; i<=N; i++) {
+
+		List<NumberWord> list = new ArrayList<>();
+
+		for (int i = M; i <= N; i++) {
 			String num = Integer.toString(i);
-			String str = "";
-			
-			for(int j=0; j<num.length(); j++) {
+			StringBuilder str = new StringBuilder();
+
+			for (int j = 0; j < num.length(); j++) {
 				int now = num.charAt(j) - '0';
-				str += map1.get(now);
-				str += " ";
+				str.append(words[now]);
+
+				if (j != num.length() - 1) {
+					str.append(" ");
+				}
 			}
-			
-			set.add(str);
+
+			list.add(new NumberWord(i, str.toString()));
 		}
-		
-		int idx = 1;
-		for(String s : set) {
-			st = new StringTokenizer(s);
-			int size = st.countTokens();
-			for(int i=0; i<size; i++) bw.write(Integer.toString(map2.get(st.nextToken())));
-			if(idx % 10 == 0) bw.newLine();
-			else bw.write(" ");
-			idx++;
+
+		Collections.sort(list);
+
+		for (int i = 0; i < list.size(); i++) {
+			bw.write(Integer.toString(list.get(i).number));
+
+			if ((i + 1) % 10 == 0) {
+				bw.newLine();
+			} else if (i != list.size() - 1) {
+				bw.write(" ");
+			}
+
 		}
-		
+
 		bw.flush();
 		bw.close();
 	}
