@@ -28,8 +28,8 @@ public class Main {
 		int maxVal = 0;
 		
 		for(int i=M-1; i>=0; i--) {
-			if(Math.abs(i-M) > N) break;
-			int now = (Math.abs(i - M)) * arr[i];
+			if(M-i > N) break;
+			int now = (M-i) * arr[i];
 			if(now >= maxVal) {
 				maxCost = arr[i];
 				maxVal = now;
