@@ -13,11 +13,11 @@ public class Main {
 		String input = br.readLine();
 		
 		String str = "CAMBRIDGE";
-		for(int i=0; i<str.length(); i++) {
-			input = input.replace(Character.toString(str.charAt(i)), "");
-		}
 		
-		bw.write(input);
+		for(int i=0; i<input.length(); i++) {
+			char now = input.charAt(i);
+			if(str.indexOf(now) == -1) bw.write(now);
+		}
 		
 		bw.flush();
 		bw.close();
