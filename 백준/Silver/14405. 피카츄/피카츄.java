@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
+// replace로 제거하면 순서대로 제거되면서 원래는 No여야 하는 경우도 YES 출력되는 문제 발생
+// 반례 : kpia
+
 public class Main {
 	
 	public static void main(String[] args) throws IOException {
