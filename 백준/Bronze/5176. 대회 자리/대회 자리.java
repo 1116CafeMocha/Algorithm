@@ -3,7 +3,6 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -15,16 +14,17 @@ public class Main {
 		
 		int K = Integer.parseInt(br.readLine());
 		
-		boolean[] arr = new boolean[501];
+		boolean[] arr;
 		int count = 0;
 		
 		while(K-- > 0) {
-			Arrays.fill(arr, false);
 			count = 0;
 			
 			st = new StringTokenizer(br.readLine());
 			int P = Integer.parseInt(st.nextToken());
 			int M = Integer.parseInt(st.nextToken());
+			
+			arr = new boolean[M+1];
 			
 			for(int i=0; i<P; i++) {
 				int now = Integer.parseInt(br.readLine());
