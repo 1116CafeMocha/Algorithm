@@ -3,6 +3,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
 
 public class Main {
 	
@@ -17,9 +18,10 @@ public class Main {
 			sb.append(input);
 		}
 		
-		String[] arr = sb.toString().split(",");
+		StringTokenizer st = new StringTokenizer(sb.toString(), ",");
+		int N = st.countTokens();
 		Long sum = 0L;
-		for(String now : arr) sum += Integer.parseInt(now);
+		for(int i=0; i<N; i++) sum += Integer.parseInt(st.nextToken());
 		bw.write(Long.toString(sum));
 		
 		bw.flush();
