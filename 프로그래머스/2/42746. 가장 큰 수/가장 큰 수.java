@@ -10,7 +10,7 @@ class Solution {
             return (b+a).compareTo(a+b);
         });
         
-        if(Integer.parseInt(arr[0]) == 0) return "0";
+        if(Integer.parseInt(arr[0]) == 0) return "0"; 
         
         for(String now : arr) answer += now;
         
