@@ -1,8 +1,8 @@
 class Solution {
     public String solution(String phone_number) {
-        String answer = "";
-        int len = phone_number.length();
-        answer = "*".repeat(len-4) + phone_number.charAt(len-4) + phone_number.charAt(len-3) + phone_number.charAt(len-2) + phone_number.charAt(len-1);
-        return answer;
+        char[] answer = phone_number.toCharArray();
+        for(int i=0; i<answer.length - 4; i++)
+            answer[i] = '*';
+        return String.valueOf(answer);
     }
 }
