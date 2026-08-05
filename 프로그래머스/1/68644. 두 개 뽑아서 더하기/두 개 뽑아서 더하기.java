@@ -1,5 +1,7 @@
 import java.util.*;
 
+// 원래는 contains 매번 돌리는거보다 set을 쓰는 등 중복체크 해주는게 좋음
+
 class Solution {
     public int[] solution(int[] numbers) {
         List<Integer> list = new ArrayList<>();
