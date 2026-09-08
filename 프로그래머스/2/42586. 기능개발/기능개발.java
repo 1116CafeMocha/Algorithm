@@ -1,34 +1,22 @@
 import java.util.*;
 
 class Solution {
-    class Task{
-        int progress;
-        int speed;
-        
-        Task(int p, int s){
-            this.progress = p;
-            this.speed = s;
-        }
-    }
+    
     public int[] solution(int[] progresses, int[] speeds) {
         int[] answer;
         List<Integer> list = new ArrayList<>();
         
-        Queue<Task> que = new ArrayDeque<>();
-        for(int i=0; i<speeds.length; i++) que.offer(new Task(progresses[i], speeds[i]));
-        
         int sum = 0;
         int time = 0;
         
-        while(!que.isEmpty()){
-            Task now = que.poll();
-            int nowS = now.speed;
-            int nowP = now.progress + time * nowS;
+        for(int i=0; i<speeds.length; i++){
+            int nowS = speeds[i];
+            int nowP = progresses[i] + time * nowS;
             
             if(time == 0){
                 time += (100 - nowP + nowS - 1) / nowS;
                 sum++;
-                if(que.isEmpty()) list.add(sum);
+                if(i == speeds.length - 1) list.add(sum);
                 continue;
             }
             
@@ -40,7 +28,7 @@ class Solution {
                 sum++;
             }
             
-            if(que.isEmpty()) list.add(sum);
+            if(i == speeds.length - 1) list.add(sum);
         }
         
         answer = new int[list.size()];
