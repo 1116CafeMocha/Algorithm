@@ -2,9 +2,9 @@ import java.util.*;
 
 class Solution {
     public int solution(String[] s1, String[] s2) {
-        int answer = 0;
-        Set<String> set = new HashSet<>(Arrays.asList(s1));
-        for(String now : s2) if(set.contains(now)) answer++;
-        return answer;
+        List<String> list1 = new ArrayList<>(Arrays.asList(s1));
+        List<String> list2 = new ArrayList<>(Arrays.asList(s2));
+        list1.retainAll(list2);
+        return list1.size();
     }
 }
