@@ -8,3 +8,6 @@ class Solution {
         return list1.size();
     }
 }
+
+// Arrays.asList
+// retainAll : 교집합
