@@ -82,17 +82,17 @@ class Solution {
                     int R = nowR + dr[i];
                     int C = nowC + dc[i];
                     
-                    if(R == itemR && C == itemC){
-                        answer = count / 2;
-                        return;
-                    }
-                    
                     if(R <= 0) continue;
                     if(C <= 0) continue;
                     if(R > 100) continue;
                     if(C > 100) continue;
                     if(!map[R][C]) continue;
                     if(visited[R][C]) continue;
+                    
+                    if(R == itemR && C == itemC){
+                        answer = count / 2;
+                        return;
+                    }
                     
                     visited[R][C] = true;
                     que.offer(new int[]{R, C});
