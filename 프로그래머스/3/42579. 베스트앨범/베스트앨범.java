@@ -46,10 +46,13 @@ class Solution {
             if(songList.size() >= 2) answer.add(songList.get(1).id);
         }
         
-        int[] temp = new int[answer.size()];
+//         int[] temp = new int[answer.size()];
         
-        for(int i=0; i<temp.length; i++) temp[i] = answer.get(i);
+//         for(int i=0; i<temp.length; i++) temp[i] = answer.get(i);
         
-        return temp;
+//         return temp;
+        
+        // strem 쓰면 간단하게 가능!
+        return answer.stream().mapToInt(Integer::intValue).toArray();
     }
 }
