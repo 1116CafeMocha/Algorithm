@@ -4,15 +4,14 @@ class Solution {
     public int solution(int[][] triangle) {
         int L = triangle.length;
         
-        int[][] dp = new int[L][L];
-        dp[L-1] = triangle[L-1].clone();
+        // 2차원 배열 쓰지 않고도 1차원 배열 하나를 계속 갱신하면서 쓸 수 있음!
+        int[] dp = new int[L];
+        dp = triangle[L-1].clone();
         
-        for(int r=L-2; r>=0; r--){
-            for(int c=0; c<=r; c++){
-                dp[r][c] = triangle[r][c] + Math.max(dp[r+1][c], dp[r+1][c+1]);
-            }
-        }
+        for(int r=L-2; r>=0; r--) 
+            for(int c=0; c<=r; c++)
+                dp[c] = triangle[r][c] + Math.max(dp[c], dp[c+1]);
         
-        return dp[0][0];
+        return dp[0];
     }
 }
