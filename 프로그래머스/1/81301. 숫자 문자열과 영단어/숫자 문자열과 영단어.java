@@ -2,19 +2,9 @@ import java.util.*;
 
 class Solution {
     public int solution(String s) {
-        Map<String, String> map = new LinkedHashMap<>();
-        map.put("zero", "0");
-        map.put("one", "1");
-        map.put("two", "2");
-        map.put("three", "3");
-        map.put("four", "4");
-        map.put("five", "5");
-        map.put("six", "6");
-        map.put("seven", "7");
-        map.put("eight", "8");
-        map.put("nine", "9");
+        String[] dict = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
         
-        for(String str : map.keySet()) s = s.replace(str, map.get(str));
+        for(int i=0; i<10; i++) s=s.replace(dict[i], String.valueOf(i));
         
         return Integer.parseInt(s);
     }
