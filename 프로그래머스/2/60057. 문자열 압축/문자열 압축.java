@@ -11,7 +11,7 @@ class Solution {
             str = s.substring(0, i);
             
             for(int j=i; j<s.length(); j+=i){
-                String now = j+i < s.length() ? s.substring(j, j+i) : s.substring(j, s.length());
+                String now = s.substring(j, Math.min(j + i, s.length()));
                 if(str.equals(now)) stack++;
                 else{
                     count += str.length();
