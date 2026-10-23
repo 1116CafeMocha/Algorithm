@@ -7,19 +7,16 @@ import java.util.*;
 
 class Solution {
     int answer, N;
-    int[][] board, table;
     List<List<int[]>> holes, pieces;
     
     private static final int[] dr = {0, 1, 0, -1};
     private static final int[] dc = {1, 0, -1, 0};
     
     public int solution(int[][] game_board, int[][] table) {
-        board = game_board;
-        this.table = table;
         answer = 0;
-        N = board.length;
+        N = game_board.length;
         
-        holes = extract(board, 0);
+        holes = extract(game_board, 0);
         pieces = extract(table, 1);
         
         boolean[] used = new boolean[pieces.size()];
