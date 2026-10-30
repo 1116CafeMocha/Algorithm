@@ -1,5 +1,3 @@
-import java.util.*;
-
 class Solution {
     public int solution(int[] num_list) {
         StringBuilder odd = new StringBuilder();
