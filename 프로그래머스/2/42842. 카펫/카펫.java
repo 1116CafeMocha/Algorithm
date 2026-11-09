@@ -1,11 +1,11 @@
 class Solution {
     public int[] solution(int brown, int yellow) {
-        int yx = yellow, yy = 0;
+        int yy = 0;
         
-        while(yx>=yy){
+        while(yy*yy <= yellow){
             if(yellow % ++yy != 0) continue;
             
-            yx = yellow / yy;
+            int yx = yellow / yy;
             
             if((yx+2)*(yy+2) == brown + yellow) return new int[]{yx+2, yy+2};
         }
