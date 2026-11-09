@@ -1,9 +1,8 @@
 class Solution {
     public int[] solution(int brown, int yellow) {
-        int yy = 0;
         
-        while(yy*yy <= yellow){
-            if(yellow % ++yy != 0) continue;
+        for(int yy=1; yy*yy<=yellow; yy++){
+            if(yellow % yy != 0) continue;
             
             int yx = yellow / yy;
             
