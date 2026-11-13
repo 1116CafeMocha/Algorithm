@@ -1,6 +1,6 @@
 class Solution {
-    static int answer, L;
-    static int[][] dungeons;
+    int answer, L;
+    int[][] dungeons;
     
     public int solution(int k, int[][] dungeons) {
         answer = 0;
@@ -12,7 +12,7 @@ class Solution {
         return answer;
     }
     
-    static void dfs(int k, boolean[] visited, int count){
+    void dfs(int k, boolean[] visited, int count){
         if(count > answer) answer = count;
         
         for(int i=0; i<L; i++){
