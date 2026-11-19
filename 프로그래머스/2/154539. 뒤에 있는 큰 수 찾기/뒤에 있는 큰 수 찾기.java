@@ -5,16 +5,16 @@ class Solution {
         int[] answer = new int[numbers.length];
         Arrays.fill(answer, -1);
         
-        Stack<Integer> stack = new Stack<>();
+        Deque<Integer> stack = new ArrayDeque<>();
         
         for(int i=0; i<numbers.length; i++){
             int now = numbers[i];
             
-            while(!stack.isEmpty() && now > numbers[stack.peek()]){
-                answer[stack.pop()] = numbers[i];
+            while(!stack.isEmpty() && now > numbers[stack.peekLast()]){
+                answer[stack.pollLast()] = numbers[i];
             }
             
-            stack.push(i);
+            stack.offerLast(i);
         }
         
         return answer;
