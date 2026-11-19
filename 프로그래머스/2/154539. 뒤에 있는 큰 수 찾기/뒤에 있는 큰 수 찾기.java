@@ -8,12 +8,8 @@ class Solution {
         Stack<Integer> stack = new Stack<>();
         
         for(int i=0; i<numbers.length; i++){
-            if(stack.isEmpty()){
-                stack.push(i);
-                continue;
-            }
-            
             int now = numbers[i];
+            
             while(!stack.isEmpty() && now > numbers[stack.peek()]){
                 answer[stack.pop()] = numbers[i];
             }
