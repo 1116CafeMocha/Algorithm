@@ -1,9 +1,10 @@
 import java.io.*;
+import java.util.*;
 
 public class Main{
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] input = br.readLine().split(" ");
-        System.out.print(Integer.parseInt(input[0]) + Integer.parseInt(input[1]));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        System.out.print(Integer.parseInt(st.nextToken()) + Integer.parseInt(st.nextToken()));
     }
 }
