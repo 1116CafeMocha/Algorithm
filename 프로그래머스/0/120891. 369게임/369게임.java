@@ -2,7 +2,8 @@ class Solution {
     public int solution(int order) {
         int answer = 0;
         while(order > 0){
-            if(order%10 != 0 && order%10%3==0) answer++;
+            int digit = order%10;
+            if(digit != 0 && digit%3==0) answer++;
             order /= 10;
         }
         return answer;
